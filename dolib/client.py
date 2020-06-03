@@ -121,10 +121,7 @@ class Client(BaseClient):
         data: str = None,
     ) -> t.Dict[str, t.Any]:
         response = self.request_raw(endpoint, method, params, json, data)
-        if response.status_code in [
-            requests.codes["no_content"],
-            requests.codes["accepted"],
-        ]:
+        if response.status_code in [requests.codes["no_content"]]:
             return {}
         return response.json()
 
